@@ -1,1 +1,1 @@
-# sp-starter-parent
+# springboot-boilerplate-starter-parent
