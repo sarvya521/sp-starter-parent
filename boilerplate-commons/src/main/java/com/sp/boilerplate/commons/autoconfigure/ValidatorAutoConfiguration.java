@@ -1,11 +1,10 @@
 package com.sp.boilerplate.commons.autoconfigure;
 
+import javax.validation.ConstraintValidatorFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory;
-
-import javax.validation.ConstraintValidatorFactory;
 
 /**
  * @author sarvesh
@@ -15,8 +14,9 @@ import javax.validation.ConstraintValidatorFactory;
 @Configuration
 public class ValidatorAutoConfiguration {
 
-    @Bean
-    public ConstraintValidatorFactory constraintValidatorFactory(AutowireCapableBeanFactory beanFactory) {
-        return new SpringConstraintValidatorFactory(beanFactory);
-    }
+  @Bean
+  public ConstraintValidatorFactory constraintValidatorFactory(
+      AutowireCapableBeanFactory beanFactory) {
+    return new SpringConstraintValidatorFactory(beanFactory);
+  }
 }

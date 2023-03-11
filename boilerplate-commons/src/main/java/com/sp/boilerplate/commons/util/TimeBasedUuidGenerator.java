@@ -1,7 +1,6 @@
 package com.sp.boilerplate.commons.util;
 
 import com.fasterxml.uuid.Generators;
-
 import java.util.UUID;
 
 /**
@@ -11,11 +10,11 @@ import java.util.UUID;
  */
 public final class TimeBasedUuidGenerator {
 
-    private TimeBasedUuidGenerator() {
-        throw new AssertionError();
-    }
+  private TimeBasedUuidGenerator() {
+    throw new AssertionError();
+  }
 
-    public static UUID get() {
-        return Generators.timeBasedGenerator().generate();
-    }
+  public static UUID get() {
+    return Generators.timeBasedGenerator().generate();
+  }
 }

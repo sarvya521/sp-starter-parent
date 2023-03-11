@@ -14,15 +14,15 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @Configuration
 public class ErrorMessageSourceAutoConfiguration {
 
-    @Bean
-    public MessageSource errorMessageSource() {
-        ReloadableResourceBundleMessageSource messageSource
-            = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:errors-list");
-        messageSource.setDefaultEncoding("UTF-8");
+  @Bean
+  public MessageSource errorMessageSource() {
+    ReloadableResourceBundleMessageSource messageSource
+        = new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("classpath:errors-list");
+    messageSource.setDefaultEncoding("UTF-8");
 
-        ErrorGenerator.setErrorMessageSource(messageSource);
+    ErrorGenerator.setErrorMessageSource(messageSource);
 
-        return messageSource;
-    }
+    return messageSource;
+  }
 }

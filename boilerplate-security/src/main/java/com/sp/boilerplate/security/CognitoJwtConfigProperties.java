@@ -12,28 +12,32 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class CognitoJwtConfigProperties {
-    private final String region;
 
-    private final String userPoolId;
+  private final String region;
 
-    private final String jwkUrl;
+  private final String userPoolId;
 
-    private final String identityPoolUrl;
+  private final String jwkUrl;
 
-    private final String httpHeader = "Authorization";
+  private final String identityPoolUrl;
 
-    private final String userNameField = "cognito:username";
+  private final String httpHeader = "Authorization";
 
-    private final String userGroupsField = "cognito:groups";
+  private final String userNameField = "cognito:username";
 
-    private final int connectionTimeout = 2000;
+  private final String userGroupsField = "cognito:groups";
 
-    private final int readTimeout = 2000;
+  private final int connectionTimeout = 2000;
 
-    public CognitoJwtConfigProperties( @Value("${aws.cognito.region}") String region, @Value("${aws.cognito.userPoolId}") String userPoolId) {
-        this.region = region;
-        this.userPoolId = userPoolId;
-        this.jwkUrl = String.format("https://cognito-idp.%s.amazonaws.com/%s/.well-known/jwks.json", this.region, this.userPoolId);
-        this.identityPoolUrl = String.format("https://cognito-idp.%s.amazonaws.com/%s", this.region, this.userPoolId);
-    }
+  private final int readTimeout = 2000;
+
+  public CognitoJwtConfigProperties(@Value("${aws.cognito.region}") String region,
+      @Value("${aws.cognito.userPoolId}") String userPoolId) {
+    this.region = region;
+    this.userPoolId = userPoolId;
+    this.jwkUrl = String.format("https://cognito-idp.%s.amazonaws.com/%s/.well-known/jwks.json",
+        this.region, this.userPoolId);
+    this.identityPoolUrl = String.format("https://cognito-idp.%s.amazonaws.com/%s", this.region,
+        this.userPoolId);
+  }
 }

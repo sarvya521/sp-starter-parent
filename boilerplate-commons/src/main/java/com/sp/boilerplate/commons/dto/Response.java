@@ -4,18 +4,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.sp.boilerplate.commons.constant.Status;
-import com.sp.boilerplate.commons.exception.ErrorDetails;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
-import java.util.List;
-
 // @formatter:off
 
 /**
- * Wrapper of final API Response. All endpoints are required to return API Response in this format only.
+ * Wrapper of final API Response. All endpoints are required to return API Response in this format
+ * only.
  * <p>
  * There are 4 main sections of response.
  * <ul>
@@ -91,48 +90,49 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Response<T> {
-    /**
-     * status of Api Response.
-     *
-     * @see Status
-     */
-    private Status status;
-    /**
-     * HttpStatus Code of Api Response.
-     *
-     * @see org.springframework.http.HttpStatus
-     */
-    private Integer code;
-    /**
-     * Api Response Payload
-     */
-    private T data;
-    /**
-     * Error details when status is not {@link Status#SUCCESS}
-     *
-     * @see ErrorDetails
-     */
-    private List<ErrorDetails> errors;
 
-    /**
-     * @param status
-     * @param code
-     * @param data
-     */
-    public Response(@NonNull Status status, @NonNull Integer code, T data) {
-        this.status = status;
-        this.code = code;
-        this.data = data;
-    }
+  /**
+   * status of Api Response.
+   *
+   * @see Status
+   */
+  private Status status;
+  /**
+   * HttpStatus Code of Api Response.
+   *
+   * @see org.springframework.http.HttpStatus
+   */
+  private Integer code;
+  /**
+   * Api Response Payload
+   */
+  private T data;
+  /**
+   * Error details when status is not {@link Status#SUCCESS}
+   *
+   * @see ErrorDetails
+   */
+  private List<ErrorDetails> errors;
 
-    /**
-     * @param status
-     * @param code
-     * @param errors
-     */
-    public Response(@NonNull Status status, @NonNull Integer code, ErrorDetails... errors) {
-        this.status = status;
-        this.code = code;
-        this.errors = List.of(errors);
-    }
+  /**
+   * @param status
+   * @param code
+   * @param data
+   */
+  public Response(@NonNull Status status, @NonNull Integer code, T data) {
+    this.status = status;
+    this.code = code;
+    this.data = data;
+  }
+
+  /**
+   * @param status
+   * @param code
+   * @param errors
+   */
+  public Response(@NonNull Status status, @NonNull Integer code, ErrorDetails... errors) {
+    this.status = status;
+    this.code = code;
+    this.errors = List.of(errors);
+  }
 }

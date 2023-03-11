@@ -1,149 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>boilerplate-commons</module>
-        <module>boilerplate-security</module>
-    </modules>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.sp.boilerplate</groupId>
-    <artifactId>springboot-boilerplate-starter-parent</artifactId>
-    <version>0.0.1</version>
-    <packaging>pom</packaging>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>boilerplate-commons</module>
+    <module>boilerplate-security</module>
+  </modules>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.2</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.sp.boilerplate</groupId>
+  <artifactId>springboot-boilerplate-starter-parent</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
 
-    <properties>
-        <java.version>11</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+  <properties>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-cloud-aws.version>2.4.2</spring-cloud-aws.version>
-        <aws-java-sdk.version>1.12.274</aws-java-sdk.version>
-        <commons-collections.version>4.3</commons-collections.version>
-        <owasp.encoder.version>1.2.2</owasp.encoder.version>
-        <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
-        <liquibase.version>4.14.0</liquibase.version>
-        <hikaricp.version>5.0.1</hikaricp.version>
-        <modelmapper.version>3.1.0</modelmapper.version>
-        <h2.version>2.1.214</h2.version>
-        <reflections.version>0.10.2</reflections.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
+    <spring-cloud.version>2021.0.3</spring-cloud.version>
+    <commons-collections.version>4.4</commons-collections.version>
+    <owasp.encoder.version>1.2.2</owasp.encoder.version>
+    <logstash-logback-encoder.version>7.3</logstash-logback-encoder.version>
+    <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
+    <liquibase.version>4.14.0</liquibase.version>
+    <hikaricp.version>5.0.1</hikaricp.version>
+    <modelmapper.version>3.1.0</modelmapper.version>
+    <h2.version>2.1.214</h2.version>
+    <httpclient.version>4.5.13</httpclient.version>
+    <nimbus-jose-jwt.version>9.22</nimbus-jose-jwt.version>
+    <reflections.version>0.10.2</reflections.version>
+    <testcontainers.version>1.17.3</testcontainers.version>
 
-        <boilerplate-commons.version>0.0.1</boilerplate-commons.version>
-        <boilerplate-security.version>0.0.1</boilerplate-security.version>
-    </properties>
+    <boilerplate-commons.version>0.0.1</boilerplate-commons.version>
+    <boilerplate-security.version>0.0.1</boilerplate-security.version>
+  </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
 
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-bom</artifactId>
-                <version>${aws-java-sdk.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>${jackson-bom.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>${jackson-bom.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-dataformat-jsr310</artifactId>
+        <version>${jackson-bom.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons-collections.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.owasp.encoder</groupId>
+        <artifactId>encoder</artifactId>
+        <version>${owasp.encoder.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc-openapi-ui.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logstash-logback-encoder.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-core</artifactId>
-                <version>${liquibase.version}</version><!--$NO-MVN-MAN-VER$ -->
-            </dependency>
+      <dependency>
+        <groupId>org.modelmapper</groupId>
+        <artifactId>modelmapper</artifactId>
+        <version>${modelmapper.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP</artifactId>
-                <version>${hikaricp.version}</version><!--$NO-MVN-MAN-VER$ -->
-            </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>${springdoc-openapi-ui.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version><!--$NO-MVN-MAN-VER$ -->
+      </dependency>
 
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>${reflections.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
 
-            <!-- test containers -->
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers</artifactId>
-                <version>${testcontainers.version}</version>
-                <scope>test</scope>
-            </dependency>
+      <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>${hikaricp.version}</version><!--$NO-MVN-MAN-VER$ -->
+      </dependency>
 
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>mysql</artifactId>
-                <version>${testcontainers.version}</version>
-                <scope>test</scope>
-            </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${testcontainers.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.reflections</groupId>
+        <artifactId>reflections</artifactId>
+        <version>${reflections.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>com.sp.boilerplate</groupId>
-                <artifactId>boilerplate-commons</artifactId>
-                <version>${boilerplate-commons.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>com.sp.boilerplate</groupId>
-                <artifactId>boilerplate-security</artifactId>
-                <version>${boilerplate-security.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>${nimbus-jose-jwt.version}</version>
+      </dependency>
+
+      <!-- test containers -->
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>mysql</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${testcontainers.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sp.boilerplate</groupId>
+        <artifactId>boilerplate-commons</artifactId>
+        <version>${boilerplate-commons.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sp.boilerplate</groupId>
+        <artifactId>boilerplate-security</artifactId>
+        <version>${boilerplate-security.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

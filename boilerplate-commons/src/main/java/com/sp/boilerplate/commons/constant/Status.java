@@ -9,5 +9,5 @@ package com.sp.boilerplate.commons.constant;
  * @since 0.0.1
  */
 public enum Status {
-    SUCCESS, FAIL, CLIENT_ERROR;
+  SUCCESS, FAIL, CLIENT_ERROR;
 }

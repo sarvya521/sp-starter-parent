@@ -11,52 +11,53 @@ import java.util.function.Supplier;
  * @since 0.0.1
  */
 public class FunctionalReadWriteLock {
-    private final Lock readLock;
-    private final Lock writeLock;
 
-    public FunctionalReadWriteLock() {
-        this(new ReentrantReadWriteLock());
-    }
+  private final Lock readLock;
+  private final Lock writeLock;
 
-    public FunctionalReadWriteLock(ReadWriteLock lock) {
-        readLock = lock.readLock();
-        writeLock = lock.writeLock();
-    }
+  public FunctionalReadWriteLock() {
+    this(new ReentrantReadWriteLock());
+  }
 
-    public <T> T read(Supplier<T> block) {
-        readLock.lock();
-        try {
-            return block.get();
-        } finally {
-            readLock.unlock();
-        }
-    }
+  public FunctionalReadWriteLock(ReadWriteLock lock) {
+    readLock = lock.readLock();
+    writeLock = lock.writeLock();
+  }
 
-    public void read(Runnable block) {
-        readLock.lock();
-        try {
-            block.run();
-        } finally {
-            readLock.unlock();
-        }
+  public <T> T read(Supplier<T> block) {
+    readLock.lock();
+    try {
+      return block.get();
+    } finally {
+      readLock.unlock();
     }
+  }
 
-    public <T> T write(Supplier<T> block) {
-        writeLock.lock();
-        try {
-            return block.get();
-        } finally {
-            writeLock.unlock();
-        }
+  public void read(Runnable block) {
+    readLock.lock();
+    try {
+      block.run();
+    } finally {
+      readLock.unlock();
     }
+  }
 
-    public void write(Runnable block) {
-        writeLock.lock();
-        try {
-            block.run();
-        } finally {
-            writeLock.unlock();
-        }
+  public <T> T write(Supplier<T> block) {
+    writeLock.lock();
+    try {
+      return block.get();
+    } finally {
+      writeLock.unlock();
     }
+  }
+
+  public void write(Runnable block) {
+    writeLock.lock();
+    try {
+      block.run();
+    } finally {
+      writeLock.unlock();
+    }
+  }
 
 }

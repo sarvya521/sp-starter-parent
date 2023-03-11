@@ -1,11 +1,10 @@
 package com.sp.boilerplate.security;
 
+import java.util.Objects;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-
-import java.util.Objects;
 
 /**
  * @author sarvesh
@@ -14,20 +13,24 @@ import java.util.Objects;
  */
 public final class AuthUtil {
 
-    public static Authentication getAuthentication() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (Objects.isNull(authentication)) {
-            throw new AuthenticationServiceException("No Authentication object found in SecurityContext");
-        }
-        return authentication;
-    }
+  private AuthUtil() {
+    throw new AssertionError();
+  }
 
-    public static User getLoggedInUser() {
-        JwtAuthentication authentication = (JwtAuthentication) getAuthentication();
-        return (User)authentication.getPrincipal();
+  public static Authentication getAuthentication() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (Objects.isNull(authentication)) {
+      throw new AuthenticationServiceException("No Authentication object found in SecurityContext");
     }
+    return authentication;
+  }
 
-    private AuthUtil() {
-        throw new AssertionError();
-    }
+  public static User getLoggedInUser() {
+    JwtAuthentication authentication = (JwtAuthentication) getAuthentication();
+    return (User) authentication.getPrincipal();
+  }
+
+  public static String getUsername() {
+    return getLoggedInUser().getUsername();
+  }
 }
